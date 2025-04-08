@@ -1,11 +1,10 @@
 "use client";
-
 import { products, collections } from "@wix/stores";
 import { useContext, createContext } from "react";
 import Cookies from "js-cookie";
 import { createClient, OAuthStrategy } from "@wix/sdk";
 
-const refreshToken = JSON.parse(Cookies.get("refreshToken") || "{}");
+const refreshToken = await JSON.parse(Cookies.get("refreshToken") || "{}");
 
 const wixClient = createClient({
   modules: {
@@ -24,12 +23,12 @@ const wixClient = createClient({
   }),
 });
 
-const wixClientContext = createContext(wixClient);
+const WixClientContext = createContext(wixClient);
 
 export const useWixClient = () => {
-  return useContext(wixClientContext);
+  return useContext(WixClientContext);
 };
 
 export const wixClientContextProvider = ({ Children }) => {
-  return <wixClientContext.Provider value={useWix}>{Children}</wixClientContext.Provider>;
+  return <WixClientContext.Provider value={useWix}>{Children}</WixClientContext.Provider>;
 };

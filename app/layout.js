@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { wixClientContextProvider } from "@/context/wixClientContext";
+// import { WixClientContextProvider } from "@/context/wixClientContext";
+import { CartProvider } from "@/context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,11 +21,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <wixClientContextProvider>{children}</wixClientContextProvider>
+        {/* <WixClientContextProvider> */}
+          <CartProvider>{children}</CartProvider>
+        {/* </WixClientContextProvider> */}
       </body>
     </html>
   );
