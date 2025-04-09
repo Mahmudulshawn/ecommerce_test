@@ -14,10 +14,10 @@ const NavIcons = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-//   const pathName = usePathname();
+  //   const pathName = usePathname();
 
-//   const wixClient = useWixClient();
-//   const isLoggedIn = wixClient.auth.loggedIn();
+  //   const wixClient = useWixClient();
+  //   const isLoggedIn = wixClient.auth.loggedIn();
 
   // TEMPORARY
   const isLoggedIn = false;
@@ -46,23 +46,23 @@ const NavIcons = () => {
   //   window.location.href = authUrl;
   // };
 
-//   const handleLogout = async () => {
-//     setIsLoading(true);
-//     Cookies.remove("refreshToken");
-//     const { logoutUrl } = await wixClient.auth.logout(window.location.href);
-//     setIsLoading(false);
-//     setIsProfileOpen(false);
-//     router.push(logoutUrl);
-//   };
+  //   const handleLogout = async () => {
+  //     setIsLoading(true);
+  //     Cookies.remove("refreshToken");
+  //     const { logoutUrl } = await wixClient.auth.logout(window.location.href);
+  //     setIsLoading(false);
+  //     setIsProfileOpen(false);
+  //     router.push(logoutUrl);
+  //   };
 
-//   const { cart, counter, getCart } = useCartStore();
+  //   const { cart, counter, getCart } = useCartStore();
 
-//   useEffect(() => {
-//     getCart(wixClient);
-//   }, [wixClient, getCart]);
+  //   useEffect(() => {
+  //     getCart(wixClient);
+  //   }, [wixClient, getCart]);
 
   return (
-    <div className="flex items-center gap-4 xl:gap-6 relative">
+    <div className="flex items-center gap-4 xl:gap-6 relative px-4">
       <Image
         src="/profile.png"
         alt=""
@@ -75,14 +75,21 @@ const NavIcons = () => {
       {isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 bg-white text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
           <Link href="/profile">Profile</Link>
-          <div 
-          className="mt-2 cursor-pointer" 
-        //   onClick={handleLogout}
+          <div
+            className="mt-2 cursor-pointer"
+            //   onClick={handleLogout}
           >
             {isLoading ? "Logging out" : "Logout"}
           </div>
         </div>
       )}
+      <Image
+        src={"/cart.png"}
+        alt=""
+        width={24}
+        height={24}
+        className="cursor-pointer"
+      />
     </div>
   );
 };
