@@ -62,12 +62,12 @@ const NavIcons = () => {
   //   }, [wixClient, getCart]);
 
   return (
-    <div className="flex items-center gap-4 xl:gap-6 relative px-4">
+    <div className="flex items-center gap-6 relative px-4">
       <Image
         src="/profile.png"
         alt=""
-        width={24}
-        height={24}
+        width={26}
+        height={26}
         className="cursor-pointer"
         // onClick={login}
         onClick={handleProfile}
@@ -86,8 +86,8 @@ const NavIcons = () => {
       <Image
         src={"/cart.png"}
         alt=""
-        width={24}
-        height={24}
+        width={26}
+        height={26}
         className="cursor-pointer"
       />
     </div>
