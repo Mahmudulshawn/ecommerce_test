@@ -8,7 +8,7 @@ import Menu from "./Menu";
 
 const Navbar = () => {
   return (
-    <div className="relative mx-auto px-2 w-full min-h-10 flex justify-between items-center">
+    <div className="relative mx-auto px-2 pt-1 w-full min-h-10 flex justify-between items-center">
 
       {/* MOBILE */}
       <div className="h-full w-full flex items-center justify-between md:hidden">

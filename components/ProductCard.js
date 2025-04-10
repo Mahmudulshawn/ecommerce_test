@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 import AddToCartButton from "./AddToCartButton";
 
-const ProductCard = ({ imageUrl, name, formattedPrice, description, }) => {
+const ProductCard = ({ imageUrl, name, formattedPrice, description, className }) => {
   return (
-    <div className={`relative bg-slate-50 min-w-[20rem] rounded-xl p-4 `}>
+    <div className={`relative bg-slate-50 max-w-[20rem] rounded-xl p-4 ${className}`}>
       <Image
         src={
           imageUrl ||

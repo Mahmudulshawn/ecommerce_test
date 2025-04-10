@@ -35,67 +35,66 @@ const slides = [
 const Slider = () => {
   const [current, setCurrent] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
-    <div className="h-[50vh] rounded-xl overflow-hidden">
-      {/* slider card */}
+    <div className="relative mt-10 rounded-xl overflow-hidden w-full h-[40vh] md:h-[50vh]">
+      {/* Slide Container */}
       <div
-        className="w-max h-full flex transition-all ease-in-out duration-1000"
-        style={{ transform: `translateX(-${current * 100}vw)` }}
+        className="flex transition-transform ease-in-out duration-1000 w-full h-full"
+        style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div
-            className={`${slide.bg} w-screen h-full flex flex-col gap-12 xl:flex-row`}
             key={slide.id}
+            className={`${slide.bg} flex flex-col md:flex-row w-full flex-shrink-0 h-full`}
           >
-            {/* TEXT CONTAINER */}
-            <div className="text-container xl:h-full ml-20 flex flex-col items-center justify-center gap-6 2xl:gap-10 text-center">
-              <h2 className="text-xl lg:text-3xl 2xl:text-3xl">
+            {/* Text */}
+            <div className="w-full md:w-1/2 flex flex-col items-center justify-center gap-4 p-6 text-center">
+              <h2 className="text-lg sm:text-xl lg:text-2xl">
                 {slide.description}
               </h2>
-              <h1 className="text-3xl lg:text-5xl 2xl:text-5xl font-semibold">
+              <h1 className="text-xl sm:text-3xl lg:text-5xl font-semibold">
                 {slide.title}
               </h1>
               <Link href={slide.url}>
-                <Button size={"lg"} className="">
-                  SHOP NOW
-                </Button>
+                <Button size="lg">SHOP NOW</Button>
               </Link>
             </div>
-            {/* IMAGE CONTAINER */}
-            <div className="image-container ml-10 xl:h-full relative">
+            {/* Image */}
+            <div className="w-full md:w-1/2 h-full md:h-full relative">
               <Image
                 src={slide.img}
-                alt=""
-                objectFit="cover"
+                alt={slide.title}
+                // layout="fill"
                 width={800}
                 height={400}
                 className="object-cover"
+                priority
               />
             </div>
           </div>
         ))}
       </div>
 
-      {/* navigator dots */}
-      <div className="absolute m-auto left-1/2 top-1/2 flex gap-4">
-        {slides.map((slide, index) => (
+      {/* Navigation Dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+        {slides.map((_, index) => (
           <div
-            className={`w-3 h-3  rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center ${
+            key={index}
+            className={`w-3 h-3 rounded-full ring-1 ring-gray-600 cursor-pointer flex items-center justify-center transition-transform ${
               current === index ? "scale-150" : ""
             }`}
-            key={slide.id}
             onClick={() => setCurrent(index)}
           >
             {current === index && (
-              <div className="w-[6px] h-[6px] bg-gray-600 rounded-full"></div>
+              <div className="w-[6px] h-[6px] bg-gray-600 rounded-full" />
             )}
           </div>
         ))}
