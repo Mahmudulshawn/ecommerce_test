@@ -1,5 +1,5 @@
 import { wixClientServer } from "@/lib/wixClientServer";
-import { products } from "@wix/stores";
+// import { products } from "@wix/stores";
 import Image from "next/image";
 import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
@@ -13,7 +13,7 @@ const ProductList = async ({ categoryId, limit, searchParams }) => {
   const productQuery = wixClient.products
     .queryProducts()
     .startsWith("name", searchParams?.name || "")
-    .eq("collectionIds", categoryId)
+    // .eq("collectionIds", categoryId)
     .hasSome(
       "productType",
       searchParams?.type ? [searchParams.type] : ["physical", "digital"]
@@ -37,9 +37,17 @@ const ProductList = async ({ categoryId, limit, searchParams }) => {
     if (sortType === "desc") {
       productQuery.descending(sortBy);
     }
+    if (categoryId) {
+      productQuery.eq("collectionIds", categoryId);
+    }
   }
 
-  const res = await productQuery.find();
+  try {
+    const res = productQuery.find();
+  } catch (error) {
+    console.error(error);
+    return <div className="text-red-500">Error loading products.</div>;
+  }
 
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">

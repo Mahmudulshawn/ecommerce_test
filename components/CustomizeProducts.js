@@ -1,6 +1,6 @@
 "use client";
 
-import { products } from "@wix/stores";
+// import { products } from "@wix/stores";
 import { useEffect, useState } from "react";
 import Add from "./Add";
 

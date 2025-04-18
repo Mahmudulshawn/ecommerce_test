@@ -4,14 +4,14 @@ import { useWixClient } from "@/hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-enum MODE {
-  LOGIN = "LOGIN",
-  REGISTER = "REGISTER",
-  RESET_PASSWORD = "RESET_PASSWORD",
-  EMAIL_VERIFICATION = "EMAIL_VERIFICATION",
-}
+const MODE = {
+  LOGIN: "LOGIN",
+  REGISTER: "REGISTER",
+  RESET_PASSWORD: "RESET_PASSWORD",
+  EMAIL_VERIFICATION: "EMAIL_VERIFICATION",
+};
 
 const LoginPage = () => {
   const wixClient = useWixClient();
@@ -22,6 +22,12 @@ const LoginPage = () => {
   if (isLoggedIn) {
     router.push("/");
   }
+
+  useEffect(() => {
+    if (wixClient?.auth?.loggedIn()) {
+      router.push("/");
+    }
+  }, [wixClient]);
 
   const [mode, setMode] = useState(MODE.LOGIN);
 
@@ -115,10 +121,13 @@ const LoginPage = () => {
           } else {
             setError("Something went wrong!");
           }
+          break;
         case LoginState.EMAIL_VERIFICATION_REQUIRED:
           setMode(MODE.EMAIL_VERIFICATION);
+          break;
         case LoginState.OWNER_APPROVAL_REQUIRED:
           setMessage("Your account is pending approval");
+          break;
         default:
           break;
       }
@@ -209,7 +218,7 @@ const LoginPage = () => {
             className="text-sm underline cursor-pointer"
             onClick={() => setMode(MODE.LOGIN)}
           >
-            Have and account?
+            Have an account?
           </div>
         )}
         {mode === MODE.RESET_PASSWORD && (

@@ -2,11 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const Pagination = ({
-  currentPage,
-  hasPrev,
-  hasNext,
-}) => {
+const Pagination = ({ currentPage, hasPrev, hasNext }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();

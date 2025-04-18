@@ -15,8 +15,8 @@ const Footer = () => {
             3252 Winding Way, Central Plaza, Willowbrook, CA 90210, United
             States
           </p>
-          <span className="font-semibold">hello@lama.dev</span>
-          <span className="font-semibold">+1 234 567 890</span>
+          <span className="font-semibold">workwithmahmudulshawn@gmail.com</span>
+          <span className="font-semibold">+880 1904-249892</span>
           <div className="flex gap-6">
             <Image src="/facebook.png" alt="" width={16} height={16} />
             <Image src="/instagram.png" alt="" width={16} height={16} />
