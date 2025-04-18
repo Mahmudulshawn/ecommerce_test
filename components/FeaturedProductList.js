@@ -16,7 +16,7 @@ const FeaturedProductList = async () => {
             className={" flex-shrink-0"}
             key={i}
             name={product.name}
-            // imageUrl={product.media?.mainMedia?.image?.url}
+            imageUrl={product.media?.mainMedia?.image?.url}
             formattedPrice={product.priceData?.formatted?.price}
             description={product.description}
           />

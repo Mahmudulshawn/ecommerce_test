@@ -1,40 +1,41 @@
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import NavIcons from "./NavIcons";
-import SearchBar from "./Searchbar";
-// import { Menu } from "lucide-react";
 import Menu from "./Menu";
+import Image from "next/image";
+// import SearchBar from "./Searchbar";
+import SearchBar from "./Searchbar";
+import dynamic from "next/dynamic";
+// import NavIcons from "./NavIcons";
+
+const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false });
 
 const Navbar = () => {
   return (
-    <div className="relative mx-auto px-2 pt-1 w-full min-h-10 flex justify-between items-center">
-
+    <div className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
       {/* MOBILE */}
-      <div className="h-full w-full flex items-center justify-between md:hidden">
+      <div className="h-full flex items-center justify-between md:hidden">
         <Link href="/">
-          <Image src="/logo.png" alt="" width={70} height={70} />
+          <div className="text-2xl tracking-wide">LAMA</div>
         </Link>
         <Menu />
       </div>
-
-      {/* DESKTOP */}
-      <div className="w-full hidden md:flex justify-between items-center gap-8 h-full ">
-        <div className="logo flex items-center justify-between gap-2 ">
-          <Link href={"/"}>
-            <Image src={"/logo.png"} width={70} height={70} alt="Logo" />
+      {/* BIGGER SCREENS */}
+      <div className="hidden md:flex items-center justify-between gap-8 h-full">
+        {/* LEFT */}
+        <div className="w-1/3 xl:w-1/2 flex items-center gap-12">
+          <Link href="/" className="flex items-center gap-3">
+            <Image src="/logo.png" alt="" width={24} height={24} />
+            <div className="text-2xl tracking-wide">LAMA</div>
           </Link>
-          <Link href={"/"} className="text-2xl tracking-wide pt-3 font-semibold ">
-            Campus<span className="text-orange-700 ">Merch</span>
-          </Link>
+          <div className="hidden xl:flex gap-4">
+            <Link href="/">Homepage</Link>
+            <Link href="/">Shop</Link>
+            <Link href="/">Deals</Link>
+            <Link href="/">About</Link>
+            <Link href="/">Contact</Link>
+          </div>
         </div>
-        <nav className="font-semibold hidden xl:flex items-center justify-center gap-4">
-          <Link href="/">Category</Link>
-          <Link href="/">Products</Link>
-          <Link href="/">New</Link>
-          <Link href="/">Contact</Link>
-        </nav>
-        <div className="flex items-center justify-center gap-4">
+        {/* RIGHT */}
+        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
           <SearchBar />
           <NavIcons />
         </div>

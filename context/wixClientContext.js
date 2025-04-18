@@ -30,5 +30,5 @@ export const useWixClient = () => {
 };
 
 export const wixClientContextProvider = ({ Children }) => {
-  return <WixClientContext.Provider value={useWix}>{Children}</WixClientContext.Provider>;
+  return <WixClientContext.Provider value={useWixClient}>{Children}</WixClientContext.Provider>;
 };

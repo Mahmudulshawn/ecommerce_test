@@ -17,7 +17,7 @@ const AllProductsList = async ({ searchParams }) => {
       <div className="text-2xl text-center font-semibold pb-4 tracking-tight ">
         Products
       </div>
-      <div className="flex justify-center items-center gap-8 my-4">
+      <div className="flex justify-center items-center gap-8 max-sm:gap-4 my-4">
         {cats.items.map((cat, i) => (
           <Link
             href={`/`}
@@ -25,7 +25,7 @@ const AllProductsList = async ({ searchParams }) => {
             className="flex"
           >
             <div
-              className={`border px-4 py-2 rounded-3xl ${
+              className={`border px-4 max-sm:px-2 py-2 rounded-3xl max-sm:text-sm ${
                 category === cat.slug ? "bg-green-500" : ""
               }`}
             >
@@ -34,7 +34,7 @@ const AllProductsList = async ({ searchParams }) => {
           </Link>
         ))}
       </div>
-      <div className="w-full flex flex-wrap gap-8 ">
+      <div className="w-full flex flex-wrap justify-center items-center gap-8 ">
         {products.map((product, i) => (
           <ProductCard
             key={i}
